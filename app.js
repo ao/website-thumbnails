@@ -3,7 +3,7 @@ var http = require('http');
 var url = require('url');
 
 http.createServer(onRequest).listen(8888);
-console.log('http://<ip>:8888/<example.com>');
+console.log('Serving requests at: http://0.0.0.0:8888/google.com');
 
 function onRequest(request, response){
   var domain = url.parse(request.url).pathname
@@ -12,7 +12,7 @@ function onRequest(request, response){
   var filename = domain.replace(".", "_");
   renderit(domain, filename, function() {
     response.writeHead(200);
-    response.write('http://<ip>:8888/<example.com>');
+    response.write('Serving requests at: http://0.0.0.0:8888/google.com');
     response.end();
   });
 }
