@@ -7,5 +7,5 @@ with open("query_result.csv", "r") as f:
         print(d)
         requests.get("http://localhost:8888/"+d)
         i += 1
-        if i % 20 == 0:
+        if i % 10 == 0:
             time.sleep(5)
