@@ -4,6 +4,7 @@
   "description": "",
   "main": "app.js",
   "dependencies": {
+    "resize-img": "^2.0.0",
     "webshot": "^0.18.0"
   },
   "devDependencies": {},
