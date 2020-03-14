@@ -9,8 +9,6 @@ console.log('Serving requests at: http://0.0.0.0:8888/google.com');
 
 function onRequest(request, response){
   var domain = url.parse(request.url).pathname
-
-  // var domain = "statvoo.com";
   var filename = domain.replace(".", "_");
   renderit(domain, filename, function() {
     response.writeHead(200);
@@ -23,7 +21,8 @@ function renderit(domain, filename, cb) {
   
   // WEB
 
-  webshot(domain, "cache/"+filename+'_web.png', {
+  var filename_web = "cache/"+filename+'_web.png';
+  webshot(domain, filename_web, {
     screenSize: {
       width: 1920,
       height: 1080
@@ -38,15 +37,14 @@ function renderit(domain, filename, cb) {
   },
   function(err) {
     if (err==null) {
-      console.log("finished web");
 
       (async () => {
-        const image = await resizeImg(fs.readFileSync("cache/"+filename+'_web.png'), {
+        const image = await resizeImg(fs.readFileSync(filename_web), {
             width: 1920/2,
             height: 1080/2
         });
      
-        fs.writeFileSync("cache/"+filename+'_web.png', image);
+        fs.writeFileSync(filename_web, image);
       })();
 
     }
@@ -56,7 +54,8 @@ function renderit(domain, filename, cb) {
 
   // MOB
 
-  webshot(domain, "cache/"+filename+'_mob.png', {
+  var filename_mob = "cache/"+filename+'_mob.png';
+  webshot(domain, filename_mob, {
     screenSize: {
       width: 375,
       height: 667
@@ -71,15 +70,14 @@ function renderit(domain, filename, cb) {
   },
   function(err) {
     if (err==null) {
-      console.log("finished mob");
       
       (async () => {
-        const image = await resizeImg(fs.readFileSync("cache/"+filename+'_mob.png'), {
+        const image = await resizeImg(fs.readFileSync(filename_mob), {
             width: 375/2,
             height: 667/2
         });
      
-        fs.writeFileSync("cache/"+filename+'_mob.png', image);
+        fs.writeFileSync(filename_mob, image);
       })();
 
     }
