@@ -33,6 +33,7 @@ function renderit(domain, filename, cb) {
     },
     quality: 75,
     defaultWhiteBackground: true,
+    renderDelay: 3000,
     userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36'
   },
   function(err) {
@@ -47,6 +48,8 @@ function renderit(domain, filename, cb) {
         fs.writeFileSync(filename_web, image);
       })();
 
+    } else {
+      console.log("failed on "+filename_web)
     }
   });
 
@@ -66,6 +69,7 @@ function renderit(domain, filename, cb) {
     },
     quality: 75,
     defaultWhiteBackground: true,
+    renderDelay: 3000,
     userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 6_1_4 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Mobile/10B350'
   },
   function(err) {
@@ -80,6 +84,8 @@ function renderit(domain, filename, cb) {
         fs.writeFileSync(filename_mob, image);
       })();
 
+    } else {
+      console.log("failed on "+filename_mob)
     }
   });
 
